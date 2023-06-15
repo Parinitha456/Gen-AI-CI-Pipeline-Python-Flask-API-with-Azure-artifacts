@@ -48,7 +48,9 @@ jobs:
           # Build your artifacts using Azure Artifacts
           # Replace the following commands with your actual build steps
           mkdir artifacts
-          cp -r ./ artifacts/
+          ls
+          pwd
+          cp -r / artifacts/
           ls
           pwd
           cd artifacts
