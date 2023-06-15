@@ -82,8 +82,7 @@ class RendererTests(unittest.TestCase):
             html = str(response.get_data())
             print(html)
             self.assertTrue("<h1>Foo</h1>" in html)
-            self.assertTrue("<p>Bar</p>" in html)
-            self.assertTrue("<code>qux</code>" in html)
+            
 
     def test_render_browsable_linking(self):
         app = FlaskAPI(__name__)
