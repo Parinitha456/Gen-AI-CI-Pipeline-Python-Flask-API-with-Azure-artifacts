@@ -48,11 +48,15 @@ jobs:
           # Build your artifacts using Azure Artifacts
           # Replace the following commands with your actual build steps
           mkdir artifacts
-          cp -r src/ artifacts/
-          cp -r config/ artifacts/
+          cp -r ./ artifacts/
+          ls
+          pwd
+          cd artifacts
+          ls
 
       - name: Publish Artifacts
-        uses: actions/upload-artifact@v2
+        uses: azure/CLI@v1
         with:
-          name: my-artifacts
-          path: artifacts/
+          azcliversion: latest
+          inlineScript: |
+            az storage blob upload-batch --destination github-artifacts --source ./artifacts --connection-string ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
