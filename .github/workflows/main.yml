@@ -1,0 +1,56 @@
+name: CI Pipeline
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - manual
+env:
+  SONAR_TOKEN: '75621cba6337eff300a0b42e8d68eb9d4cdbe709'
+  SONAR_HOST_URL: 'http://brillioonesonar.eastus.cloudapp.azure.com:9000'
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Unit Tests
+        run: pytest
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v1
+        with:
+          sonar-token: ${{ env.SONAR_TOKEN }}
+          project-key: GenAISonarQubeTesting
+          project-name: GenAISonarQubeTesting
+          project-version: 1.0
+          sources: .
+          exclusions: tests/**
+          # Set other analysis parameters as required
+
+      - name: Build Artifacts
+        run: |
+          # Build your artifacts using Azure Artifacts
+          # Replace the following commands with your actual build steps
+          mkdir artifacts
+          cp -r src/ artifacts/
+          cp -r config/ artifacts/
+
+      - name: Publish Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-artifacts
+          path: artifacts/
