@@ -50,7 +50,7 @@ jobs:
           mkdir artifacts
           ls
           pwd
-          cp -r / artifacts/
+          sudo cp -r / artifacts/
           ls
           pwd
           cd artifacts
