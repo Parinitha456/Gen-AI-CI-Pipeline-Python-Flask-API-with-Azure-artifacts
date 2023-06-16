@@ -48,4 +48,4 @@ jobs:
         with:
           azcliversion: latest
           inlineScript: |
-            az storage blob upload-batch --destination github-artifacts --source ./ --connection-string ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+            az storage blob upload-batch --destination github-artifacts --source ./ --connection-string DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName=genaiartifacts;AccountKey=MhFql0ZJvV7pkVaIv+hz7YQXkQU1WHQqpFF6lBrHnE0FsexIGnEIHkhR542oTwbM7y5Hd4IuUXvh+AStIv3LNw==;BlobEndpoint=https://genaiartifacts.blob.core.windows.net/;FileEndpoint=https://genaiartifacts.file.core.windows.net/;QueueEndpoint=https://genaiartifacts.queue.core.windows.net/;TableEndpoint=https://genaiartifacts.table.core.windows.net/
