@@ -43,19 +43,6 @@ jobs:
           exclusions: tests/**
           # Set other analysis parameters as required
 
-#       - name: Build Artifacts
-#         run: |
-#           # Build your artifacts using Azure Artifacts
-#           # Replace the following commands with your actual build steps
-#           mkdir artifacts
-#           ls
-#           pwd
-#           sudo cp -r / artifacts/
-#           ls
-#           pwd
-#           cd artifacts
-#           ls
-
       - name: Publish Artifacts
         uses: azure/CLI@v1
         with:
